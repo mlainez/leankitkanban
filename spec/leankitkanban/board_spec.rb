@@ -1,17 +1,20 @@
 require "spec_helper"
 
 describe LeanKitKanban::Board do
+  before :all do
+    ConfigHelper.set_test_config
+  end
+
   describe :all do
     before :each do
-      LeanKitKanban::Config.email    = EMAIL
-      LeanKitKanban::Config.password = PASSWORD
-      LeanKitKanban::Config.account  = TEST_ACCOUNT
       @response = mock("Response")
       @body     = mock("Body")
+      @json     = mock("Json")
       LeanKitKanban::Config.stub(:uri)
       LeanKitKanban::Board.stub(:get => @response)
       @response.stub(:body => @body)
-      JSON.stub(:parse)
+      JSON.stub(:parse => @json)
+      @json.stub(:[])
     end
 
     it "gets the base uri" do

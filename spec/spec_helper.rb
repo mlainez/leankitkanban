@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'support/config_helper'
 require 'leankitkanban'
 
 EMAIL        = "test@test.com"

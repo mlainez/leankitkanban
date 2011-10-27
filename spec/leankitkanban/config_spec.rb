@@ -3,9 +3,7 @@ require "spec_helper"
 describe LeanKitKanban::Config do
   describe :validate do
     before :each do
-      LeanKitKanban::Config.email    = EMAIL
-      LeanKitKanban::Config.password = PASSWORD
-      LeanKitKanban::Config.account  = TEST_ACCOUNT
+      ConfigHelper.set_test_config
     end
 
     context "when the config is not set" do
