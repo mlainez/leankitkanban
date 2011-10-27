@@ -5,7 +5,6 @@ describe LeanKitKanban::Config do
     before :each do
       LeanKitKanban::Config.email    = EMAIL
       LeanKitKanban::Config.password = PASSWORD
-      LeanKitKanban::Config.boardID  = BOARD_ID
       LeanKitKanban::Config.account  = TEST_ACCOUNT
     end
 
@@ -20,11 +19,6 @@ describe LeanKitKanban::Config do
         lambda{ LeanKitKanban::Config.validate }.should raise_error(LeanKitKanban::Config::NoCredentials)
       end
 
-      it "raises a no boardId error when no boardID" do
-        LeanKitKanban::Config.boardID = nil
-        lambda{ LeanKitKanban::Config.validate }.should raise_error(LeanKitKanban::Config::NoBoardID)
-      end
-
       it "raises a no account error when no account" do
         LeanKitKanban::Config.account = nil
         lambda{ LeanKitKanban::Config.validate }.should raise_error(LeanKitKanban::Config::NoAccount)
@@ -36,13 +30,32 @@ describe LeanKitKanban::Config do
         lambda{ LeanKitKanban::Config.validate }.should_not raise_error(LeanKitKanban::Config::NoCredentials)
       end
 
-      it "doesn't raise a no boardID error" do
-        lambda{ LeanKitKanban::Config.validate }.should_not raise_error(LeanKitKanban::Config::NoBoardID)
-      end
-
       it "doesn't raise a no account error" do
         lambda{ LeanKitKanban::Config.validate }.should_not raise_error(LeanKitKanban::Config::NoAccount)
       end
+    end
+  end
+
+  describe :uri do
+    it "validates the config" do
+      LeanKitKanban::Config.should_receive(:validate)
+      LeanKitKanban::Config.uri
+    end
+
+    it "returns the domain including the account name" do
+      LeanKitKanban::Config.uri.should eql "http://#{TEST_ACCOUNT}.leankitkanban.com/Kanban/API"
+    end
+  end
+
+  describe :basic_auth_hash do
+    it "validates the config" do
+      LeanKitKanban::Config.should_receive(:validate)
+      LeanKitKanban::Config.basic_auth_hash
+    end
+
+    it "returns a hash with the credentials" do
+      expected_hash = {:basic_auth => {:username => EMAIL, :password => PASSWORD}}
+      LeanKitKanban::Config.basic_auth_hash.should eql expected_hash
     end
   end
 end
