@@ -10,8 +10,13 @@ GEM
       rdoc (>= 3.6.1)
       rubyforge (>= 2.0.4)
     gemcutter (0.7.0)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     json (1.6.1)
     json_pure (1.6.1)
+    multi_json (1.0.3)
+    multi_xml (0.4.1)
     rake (0.9.2.2)
     rdoc (3.11)
       json (~> 1.4)
@@ -31,4 +36,5 @@ PLATFORMS
 
 DEPENDENCIES
   echoe
+  httparty
   rspec (~> 2.7.0)
