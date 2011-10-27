@@ -37,4 +37,5 @@ PLATFORMS
 DEPENDENCIES
   echoe
   httparty
+  json
   rspec (~> 2.7.0)

@@ -7,9 +7,11 @@ describe LeanKitKanban::Board do
       LeanKitKanban::Config.password = PASSWORD
       LeanKitKanban::Config.account  = TEST_ACCOUNT
       @response = mock("Response")
+      @body     = mock("Body")
       LeanKitKanban::Config.stub(:uri)
       LeanKitKanban::Board.stub(:get => @response)
-      @response.stub(:body)
+      @response.stub(:body => @body)
+      JSON.stub(:parse)
     end
 
     it "gets the base uri" do
@@ -28,7 +30,12 @@ describe LeanKitKanban::Board do
     end
 
     it "gets the body from the response" do
-      @response.should_receive(:body)
+      @response.should_receive(:body).and_return(@body)
+      LeanKitKanban::Board.all
+    end
+
+    it "converts the response body json" do
+      JSON.should_receive(:parse).with(@body)
       LeanKitKanban::Board.all
     end
   end
