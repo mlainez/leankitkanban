@@ -3,13 +3,23 @@ module LeanKitKanban
     include HTTParty
 
     ALL_BOARDS = "/Boards"
+    ONE_BOARD  = "/Boards/{boardID}"
 
     def self.all
-      base_uri        = LeanKitKanban::Config.uri
-      basic_auth_hash = LeanKitKanban::Config.basic_auth_hash
-      url             = "#{base_uri}#{ALL_BOARDS}"
-      response        = get(url, basic_auth_hash)
-      body            = response.body
+      url      = "#{LeanKitKanban::Config.uri}#{ALL_BOARDS}"
+      response = get(url, LeanKitKanban::Config.basic_auth_hash)
+      parse_body(response.body)
+    end
+
+    def self.find(board_id)
+      api_call = ONE_BOARD.gsub("{boardID}", board_id.to_s)
+      url      = "#{LeanKitKanban::Config.uri}#{api_call}"
+      response = get(url, LeanKitKanban::Config.basic_auth_hash)
+      parse_body(response.body)
+    end
+
+    private
+    def self.parse_body(body)
       json_data       = JSON.parse body
       json_data["ReplyData"]
     end
