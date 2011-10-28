@@ -25,7 +25,7 @@ Contributing
 
 Clone this repo and send pull requests.
 
-* Running specs *
+*Running specs*
 
 All specs are in the /spec directory, to run them:
 
