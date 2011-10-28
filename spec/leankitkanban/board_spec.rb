@@ -73,4 +73,39 @@ describe LeanKitKanban::Board do
       LeanKitKanban::Board.find(@board_id)
     end
   end
+
+  describe :get_identifiers do
+    before :each do
+      @board_id  = 123
+      @response  = mock("Response")
+      @body      = mock("Body")
+      @auth_hash = mock("Auth hash")
+      LeanKitKanban::Config.stub(:uri)
+      LeanKitKanban::Config.stub(:basic_auth_hash => @auth_hash)
+      LeanKitKanban::Board.stub(:get => @response)
+      @response.stub(:body => @body)
+      LeanKitKanban::Board.stub(:parse_body)
+    end
+
+    it "gets the base uri" do
+      LeanKitKanban::Config.should_receive(:uri)
+      LeanKitKanban::Board.get_identifiers(@board_id)
+    end
+
+    it "gets the basic authentication hash" do
+      LeanKitKanban::Config.should_receive(:basic_auth_hash)
+      LeanKitKanban::Board.get_identifiers(@board_id)
+    end
+
+    it "gets the board whose id is passed as parameter" do
+      url = "/Board/#{@board_id}/GetBoardIdentifiers"
+      LeanKitKanban::Board.should_receive(:get).with(url, @auth_hash).and_return(@response)
+      LeanKitKanban::Board.get_identifiers(@board_id)
+    end
+
+    it "gets the body from the response" do
+      @response.should_receive(:body).and_return(@body)
+      LeanKitKanban::Board.get_identifiers(@board_id)
+    end
+  end
 end
