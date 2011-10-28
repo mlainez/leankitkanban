@@ -2,9 +2,10 @@ module LeanKitKanban
   module Board
     include HTTParty
 
-    ALL_BOARDS  = "/Boards"
-    ONE_BOARD   = "/Boards/{boardID}"
-    IDENTIFIERS = "/Board/{boardID}/GetBoardIdentifiers"
+    ALL_BOARDS     = "/Boards"
+    ONE_BOARD      = "/Boards/{boardID}"
+    IDENTIFIERS    = "/Board/{boardID}/GetBoardIdentifiers"
+    REPLY_DATA_KEY = "ReplyData"
 
     def self.all
       get(ALL_BOARDS)
@@ -29,7 +30,7 @@ module LeanKitKanban
 
     def self.parse_body(body)
       json_data = JSON.parse body
-      json_data["ReplyData"]
+      json_data[REPLY_DATA_KEY]
     end
   end
 end
