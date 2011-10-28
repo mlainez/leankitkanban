@@ -12,8 +12,12 @@ Usage
     LeanKitKanban::Config.password = "mypassword"
     LeanKitKanban::Config.account  = "myaccount"
 
-    @boards = LeanKitKanban::Board.all # gets all boards and returns an array of hashes
-    @board  = LeanKitKanban::Board.find(board_id) # gets the board with specified id as a hash
+    # get all boards and returns an array of hashes
+    @boards      = LeanKitKanban::Board.all
+    # get the board with specified id as a hash
+    @board       = LeanKitKanban::Board.find(board_id)
+    # get all the identifiers for a board
+    @identifiers = LeanKitKanban::Board.get_identifiers(board_id)
 
 Board ID
 --------
