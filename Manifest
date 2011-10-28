@@ -1,6 +1,7 @@
 Gemfile
 Gemfile.lock
-README
+Manifest
+README.md
 Rakefile
 lib/leankitkanban.rb
 lib/leankitkanban/board.rb
@@ -9,4 +10,3 @@ spec/leankitkanban/board_spec.rb
 spec/leankitkanban/config_spec.rb
 spec/spec_helper.rb
 spec/support/config_helper.rb
-Manifest
