@@ -6,105 +6,33 @@ describe LeanKitKanban::Board do
   end
 
   describe :all do
-    before :each do
-      @response  = mock("Response")
-      @body      = mock("Body")
-      @auth_hash = mock("Auth hash")
-      LeanKitKanban::Config.stub(:uri)
-      LeanKitKanban::Config.stub(:basic_auth_hash => @auth_hash)
-      LeanKitKanban::Board.stub(:get => @response)
-      @response.stub(:body => @body)
-      LeanKitKanban::Board.stub(:parse_body)
-    end
-
-    it "gets the base uri" do
-      LeanKitKanban::Config.should_receive(:uri)
-      LeanKitKanban::Board.all
-    end
-
-    it "gets the basic authentication hash" do
-      LeanKitKanban::Config.should_receive(:basic_auth_hash)
-      LeanKitKanban::Board.all
-    end
-
     it "gets all boards for that account" do
-      url = "/Boards"
-      LeanKitKanban::Board.should_receive(:get).with(url, @auth_hash).and_return(@response)
-      LeanKitKanban::Board.all
-    end
-
-    it "gets the body from the response" do
-      @response.should_receive(:body).and_return(@body)
+      api_call = "/Boards"
+      LeanKitKanban::Board.should_receive(:get).with(api_call)
       LeanKitKanban::Board.all
     end
   end
 
   describe :find do
     before :each do
-      @board_id  = 123
-      @response  = mock("Response")
-      @body      = mock("Body")
-      @auth_hash = mock("Auth hash")
-      LeanKitKanban::Config.stub(:uri)
-      LeanKitKanban::Config.stub(:basic_auth_hash => @auth_hash)
-      LeanKitKanban::Board.stub(:get => @response)
-      @response.stub(:body => @body)
-      LeanKitKanban::Board.stub(:parse_body)
-    end
-
-    it "gets the base uri" do
-      LeanKitKanban::Config.should_receive(:uri)
-      LeanKitKanban::Board.find(@board_id)
-    end
-
-    it "gets the basic authentication hash" do
-      LeanKitKanban::Config.should_receive(:basic_auth_hash)
-      LeanKitKanban::Board.find(@board_id)
+      @board_id  = mock("boardID")
     end
 
     it "gets the board whose id is passed as parameter" do
-      url = "/Boards/#{@board_id}"
-      LeanKitKanban::Board.should_receive(:get).with(url, @auth_hash).and_return(@response)
-      LeanKitKanban::Board.find(@board_id)
-    end
-
-    it "gets the body from the response" do
-      @response.should_receive(:body).and_return(@body)
+      api_call = "/Boards/#{@board_id}"
+      LeanKitKanban::Board.should_receive(:get).with(api_call)
       LeanKitKanban::Board.find(@board_id)
     end
   end
 
   describe :get_identifiers do
     before :each do
-      @board_id  = 123
-      @response  = mock("Response")
-      @body      = mock("Body")
-      @auth_hash = mock("Auth hash")
-      LeanKitKanban::Config.stub(:uri)
-      LeanKitKanban::Config.stub(:basic_auth_hash => @auth_hash)
-      LeanKitKanban::Board.stub(:get => @response)
-      @response.stub(:body => @body)
-      LeanKitKanban::Board.stub(:parse_body)
+      @board_id  = mock("boardID")
     end
 
-    it "gets the base uri" do
-      LeanKitKanban::Config.should_receive(:uri)
-      LeanKitKanban::Board.get_identifiers(@board_id)
-    end
-
-    it "gets the basic authentication hash" do
-      LeanKitKanban::Config.should_receive(:basic_auth_hash)
-      LeanKitKanban::Board.get_identifiers(@board_id)
-    end
-
-    it "gets the board whose id is passed as parameter" do
-      url = "/Board/#{@board_id}/GetBoardIdentifiers"
-      LeanKitKanban::Board.should_receive(:get).with(url, @auth_hash).and_return(@response)
-      LeanKitKanban::Board.get_identifiers(@board_id)
-    end
-
-    it "gets the body from the response" do
-      @response.should_receive(:body).and_return(@body)
+    it "gets the identifiers of the board whose id is passed as parameter" do
+      api_call = "/Board/#{@board_id}/GetBoardIdentifiers"
+      LeanKitKanban::Board.should_receive(:get).with(api_call)
       LeanKitKanban::Board.get_identifiers(@board_id)
     end
   end
