@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('leankitkanban', '0.0.1') do |p|
+Echoe.new('leankitkanban', '0.0.2') do |p|
   p.description     = "Ruby Wrapper around LeanKitKanban Api"
   p.url             = "http://github.com/mlainez/leankitkanban"
   p.author          = "Marc Lainez"
