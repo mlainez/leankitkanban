@@ -5,10 +5,12 @@ README.md
 Rakefile
 lib/leankit_request.rb
 lib/leankitkanban.rb
+lib/leankitkanban/archive.rb
 lib/leankitkanban/backlog.rb
 lib/leankitkanban/board.rb
 lib/leankitkanban/card.rb
 lib/leankitkanban/config.rb
+spec/leankitkanban/archive_spec.rb
 spec/leankitkanban/backlog_spec.rb
 spec/leankitkanban/board_spec.rb
 spec/leankitkanban/card_spec.rb
