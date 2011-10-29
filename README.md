@@ -8,28 +8,45 @@ http://leankitkanban.com/
 Usage
 -----
 
+    # configure your account information
     LeanKitKanban::Config.email    = "mytestemail@test.com"
     LeanKitKanban::Config.password = "mypassword"
     LeanKitKanban::Config.account  = "myaccount"
 
     # get all boards and returns an array of hashes
     @boards      = LeanKitKanban::Board.all
+
     # get the board with specified id as a hash
     @board       = LeanKitKanban::Board.find(board_id)
-    # get all the identifiers for a board
+
+    # get all the identifiers for a board, it contains all information needed for other api calls
     @identifiers = LeanKitKanban::Board.get_identifiers(board_id)
 
-Board ID
---------
+    # get the newest version of the board if it exists
+    @board_version = LeanKitKanban::Board.get_newer_if_exists(board_id, version_id)
 
-If you want to fetch a specified board from your organization, you'll need the board ID. To get it, log in to leankitkanban, go to that board and check the url. After /Boards you should see a number, that's the board ID.
+    # gets the last 5 events that occured since version_id
+    @last_events   = LeanKitKanban::Board.get_board_history_since(board_id, version_id)
+
+
+    # get a specific card from a board
+    @card = LeanKitKanban::Card.find(board_id, card_id)
+
+    # get a specific card from a board by external id
+    @card = LeanKitKanban::Card.find_by_external_id(board_id, external_id)
+
+
+    # get board backlog
+    @backlog = LeanKitKanban::Backlog.fetch(board_id)
+
+
+    # get board archive
+    @archive = LeanKitKanban::Archive.fetch(board_id)
 
 Contributing
 ------------
 
-Clone this repo and send pull requests.
-
-*Running specs*
+Fork this repo and send me pull requests.
 
 All specs are in the /spec directory, to run them:
 
