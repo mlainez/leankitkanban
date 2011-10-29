@@ -36,4 +36,17 @@ describe LeanKitKanban::Board do
       LeanKitKanban::Board.get_identifiers(@board_id)
     end
   end
+
+  describe :get_newer_if_exists do
+    before :each do
+      @board_id   = mock("boardID")
+      @version_id = mock("versionID")
+    end
+
+    it "gets a greater version of the board than the one passed" do
+      api_call = "/Board/#{@board_id}/BoardVersion/#{@version_id}/GetNewerIfExists"
+      LeanKitKanban::Board.should_receive(:get).with(api_call)
+      LeanKitKanban::Board.get_newer_if_exists(@board_id, @version_id)
+    end
+  end
 end
