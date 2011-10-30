@@ -35,7 +35,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  echoe
-  httparty
-  json
-  rspec (~> 2.7.0)
+  echoe (= 4.6.3)
+  httparty (= 0.8.1)
+  json (= 1.6.1)
+  rspec (= 2.7.0)
