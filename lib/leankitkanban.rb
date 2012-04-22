@@ -10,4 +10,12 @@ require File.join(File.dirname(__FILE__), 'leankitkanban', 'backlog')
 require File.join(File.dirname(__FILE__), 'leankitkanban', 'archive')
 
 module LeanKitKanban
+
+  private
+
+  def self.get_single_result(results)
+    return results if results.nil?
+    return results[0] if results.kind_of?(Array)
+    results
+  end
 end
