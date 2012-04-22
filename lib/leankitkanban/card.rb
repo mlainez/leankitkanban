@@ -8,7 +8,10 @@ module LeanKitKanban
 
     def self.find(board_id, card_id)
       api_call = FIND_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s)
-      get(api_call)
+      result = get(api_call)
+      return result if result.nil?
+      return result[0] if result.kind_of?(Array)
+      result
     end
 
     def self.find_by_external_id(board_id, external_id)
