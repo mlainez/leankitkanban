@@ -15,7 +15,8 @@ module LeanKitKanban
 
     def self.find(board_id)
       api_call = ONE_BOARD.gsub("{boardID}", board_id.to_s)
-      get(api_call)
+      result = get(api_call)
+      LeanKitKanban.get_single_result(result)
     end
 
     def self.get_identifiers(board_id)

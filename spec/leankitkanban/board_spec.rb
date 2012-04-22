@@ -23,6 +23,29 @@ describe LeanKitKanban::Board do
       LeanKitKanban::Board.should_receive(:get).with(api_call)
       LeanKitKanban::Board.find(@board_id)
     end
+
+    it "returns the result from the api call" do
+      object = Object.new
+      api_call = "/Boards/#{@board_id}"
+      LeanKitKanban::Board.should_receive(:get).with(api_call).and_return(object)
+      result = LeanKitKanban::Board.find(@board_id)
+      result.should be(object)
+    end
+
+    it "returns nil if the api call returns nil" do
+      api_call = "/Boards/#{@board_id}"
+      LeanKitKanban::Board.should_receive(:get).with(api_call).and_return(nil)
+      result = LeanKitKanban::Board.find(@board_id)
+      result.nil?.should equal(true)
+    end
+
+    it "returns the first item if the api call returns an array" do
+      array = [Object.new, Object.new]
+      api_call = "/Boards/#{@board_id}"
+      LeanKitKanban::Board.should_receive(:get).with(api_call).and_return(array)
+      result = LeanKitKanban::Board.find(@board_id)
+      result.should be(array[0])
+    end
   end
 
   describe :get_identifiers do
