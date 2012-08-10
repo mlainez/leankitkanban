@@ -26,4 +26,17 @@ describe LeanKitKanban::Card do
       LeanKitKanban::Card.find_by_external_id(@board_id, @external_id)
     end
   end
+  
+  describe :delete do  
+    before :each do
+      @board_id  = mock("boardID")
+      @card_id   = mock("cardID")
+    end
+
+    it "deletes the board card whose id is passed" do
+      api_call = "/Board/#{@board_id}/DeleteCard/#{@card_id}"
+      LeanKitKanban::Card.should_receive(:get).with(api_call)
+      LeanKitKanban::Card.delete(@board_id, @card_id)
+    end
+  end
 end
