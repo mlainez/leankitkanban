@@ -5,7 +5,7 @@ require 'leankitkanban/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "leankitkanban"
-  gem.version       = Leankitkanban::VERSION
+  gem.version       = LeanKitKanban::VERSION
   gem.authors       = ["Rhyd Lewis"]
   gem.email         = ["rhyd@blampt.com"]
   gem.description   = %q{TODO: Write a gem description}
