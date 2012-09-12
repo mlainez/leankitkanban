@@ -13,8 +13,8 @@ GEM
     httparty (0.8.1)
       multi_json
       multi_xml
-    json (1.7.4)
-    json_pure (1.6.1)
+    json (>= 1.6.1)
+    json_pure (>= 1.6.1)
     multi_json (1.0.3)
     multi_xml (0.4.1)
     rake (0.9.2.2)
