@@ -35,6 +35,21 @@ Usage
     # get a specific card from a board by external id
     @card = LeanKitKanban::Card.find_by_external_id(board_id, external_id)
 
+    # add a card, specified in JSON, to the board 
+    @response = LeanKitKanban::Card.add(board_id, lane_id, position, body)
+
+    # add multiple cards, specified in JSON, to the board
+    @response = LeanKitKanban::Card.add_multiple(board_id, comment, cards)
+
+    # update a card specified in JSON
+    @response = LeanKitKanban::Card.update(board_id, body)
+
+    # delete a card from the board
+    @response = LeanKitKanban::Card.delete(board_id, card_id)
+
+    # delete multiple cards from the board
+    @response = LeanKitKanban::Card.delete_multiple(board_id, card_ids)
+
 
     # get board backlog
     @backlog = LeanKitKanban::Backlog.fetch(board_id)
