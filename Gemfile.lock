@@ -13,8 +13,8 @@ GEM
     httparty (0.8.1)
       multi_json
       multi_xml
-    json (1.6.1)
-    json_pure (1.6.1)
+    json (>= 1.6.1)
+    json_pure (>= 1.6.1)
     multi_json (1.0.3)
     multi_xml (0.4.1)
     rake (0.9.2.2)
@@ -37,5 +37,5 @@ PLATFORMS
 DEPENDENCIES
   echoe (= 4.6.3)
   httparty (= 0.8.1)
-  json (= 1.6.1)
+  json (= 1.7.4)
   rspec (= 2.7.0)

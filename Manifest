@@ -11,6 +11,7 @@ lib/leankitkanban/backlog.rb
 lib/leankitkanban/board.rb
 lib/leankitkanban/card.rb
 lib/leankitkanban/config.rb
+lib/leankitkanban/version.rb
 spec/leankitkanban/archive_spec.rb
 spec/leankitkanban/backlog_spec.rb
 spec/leankitkanban/board_spec.rb
