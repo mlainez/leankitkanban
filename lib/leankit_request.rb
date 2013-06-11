@@ -12,6 +12,14 @@ module LeanKitRequest
       response = super(url, LeanKitKanban::Config.basic_auth_hash)
       parse_body(response.body)
     end
+    
+    def post(api_call, options)
+      url      = "#{LeanKitKanban::Config.uri}#{api_call}"
+
+      options.merge!(LeanKitKanban::Config.basic_auth_hash)
+      response = super(url, options)
+      parse_body(response.body)
+    end
 
     def post(api_call, body)
       url = "#{LeanKitKanban::Config.uri}#{api_call}"
