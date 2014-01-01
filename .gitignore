@@ -1,1 +1,3 @@
 .rvmrc
+.rbenv-version
+Gemfile.lock
