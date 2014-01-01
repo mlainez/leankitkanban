@@ -26,8 +26,8 @@ describe LeanKitKanban::Card do
       LeanKitKanban::Card.find_by_external_id(@board_id, @external_id)
     end
   end
-  
-  describe :delete_multiple do  
+
+  describe :delete_multiple do
     before :each do
       @board_id = mock("boardID")
       @card_ids = [ mock("cardID_0"), mock("cardID_1"), mock("cardID_2") ]
@@ -40,7 +40,7 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :delete do  
+  describe :delete do
     before :each do
       @board_id  = mock("boardID")
       @card_id   = mock("cardID")
@@ -53,7 +53,7 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :add do  
+  describe :add do
     before :each do
       @board_id  = mock("boardID")
       @lane_id   = mock("laneID")
@@ -68,7 +68,7 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :update do  
+  describe :update do
     before :each do
       @board_id = mock("boardID")
       @body = { "Id" => mock("Id"), "Title" => mock("title"), "Description" => mock("description") }
@@ -81,17 +81,17 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :add_multiple do  
+  describe :add_multiple do
     before :each do
       @cards = []
       @board_id  = mock("boardID")
       @wip_comment = "this is a comment"
-      
+
       lane_ids = [ mock("lane_0"), mock("lane_1") ]
       titles = [ mock("title_0"), mock("title_1") ]
       type_ids = [ mock("type_0"), mock("type_1") ]
-      
-      lane_ids.each_with_index { |item, i| 
+
+      lane_ids.each_with_index { |item, i|
         @cards[i] = { "LaneId" => lane_ids[i], "Title" => titles[i], "TypeId" => type_ids[i] }
       }
     end
@@ -100,6 +100,14 @@ describe LeanKitKanban::Card do
       api_call = "/Board/#{@board_id}/AddCards?wipOverrideComment=" + URI::encode(@wip_comment)
       LeanKitKanban::Card.should_receive(:post).with(api_call, @cards)
       LeanKitKanban::Card.add_multiple(@board_id, @wip_comment, @cards)
+    end
+  end
+
+  describe :history do
+    it "gets the history of card which id is provided" do
+      api_call = "/Card/History/#{@board_id}/#{@card_id}"
+      LeanKitKanban::Card.should_receive(:get).with(api_call)
+      LeanKitKanban::Card.history(@board_id, @card_id)
     end
   end
 end
