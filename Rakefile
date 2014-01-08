@@ -1,6 +1,11 @@
 require 'rubygems'
 require 'rake'
 require 'echoe'
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+
+task :default => :spec
 
 Echoe.new('leankitkanban', '0.1.4') do |p|
   p.description              = "Ruby Wrapper around LeanKitKanban Api"
