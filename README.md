@@ -5,6 +5,8 @@ LeanKitKanban is a simple ruby wrapper around the LeanKitKanban API
 
 http://leankitkanban.com/
 
+[![Build Status](https://travis-ci.org/mlainez/leankitkanban.png?branch=master)](https://travis-ci.org/mlainez/leankitkanban)
+
 Usage
 -----
 
