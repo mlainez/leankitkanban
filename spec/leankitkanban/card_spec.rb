@@ -102,4 +102,12 @@ describe LeanKitKanban::Card do
       LeanKitKanban::Card.add_multiple(@board_id, @wip_comment, @cards)
     end
   end
+
+  describe :history do
+    it "gets the history of card which id is provided" do
+      api_call = "/Card/History/#{@board_id}/#{@card_id}"
+      LeanKitKanban::Card.should_receive(:get).with(api_call)
+      LeanKitKanban::Card.history(@board_id, @card_id)
+    end
+  end
 end
