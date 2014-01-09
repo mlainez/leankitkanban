@@ -15,7 +15,7 @@ describe LeanKitKanban::Board do
 
   describe :find do
     before :each do
-      @board_id  = mock("boardID")
+      @board_id  = double("boardID")
     end
 
     it "gets the board whose id is passed as parameter" do
@@ -27,7 +27,7 @@ describe LeanKitKanban::Board do
 
   describe :get_identifiers do
     before :each do
-      @board_id  = mock("boardID")
+      @board_id  = double("boardID")
     end
 
     it "gets the identifiers of the board whose id is passed as parameter" do
@@ -39,8 +39,8 @@ describe LeanKitKanban::Board do
 
   describe :get_newer_if_exists do
     before :each do
-      @board_id   = mock("boardID")
-      @version_id = mock("versionID")
+      @board_id   = double("boardID")
+      @version_id = double("versionID")
     end
 
     it "gets a greater version of the board than the one passed" do
@@ -52,8 +52,8 @@ describe LeanKitKanban::Board do
 
   describe :get_board_history_since do
     before :each do
-      @board_id   = mock("boardID")
-      @version_id = mock("versionID")
+      @board_id   = double("boardID")
+      @version_id = double("versionID")
     end
 
     it "gets a greater version of the board than the one passed" do

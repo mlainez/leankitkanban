@@ -3,8 +3,8 @@ require "spec_helper"
 describe LeanKitKanban::Card do
   describe :find do
     before :each do
-      @board_id  = mock("boardID")
-      @card_id   = mock("cardID")
+      @board_id  = double("boardID")
+      @card_id   = double("cardID")
     end
 
     it "gets the board card whose id is passed" do
@@ -16,8 +16,8 @@ describe LeanKitKanban::Card do
 
   describe :find_by_external_id do
     before :each do
-      @board_id    = mock("boardID")
-      @external_id = mock("externalID")
+      @board_id    = double("boardID")
+      @external_id = double("externalID")
     end
 
     it "gets the board card whose id is passed" do
@@ -26,11 +26,11 @@ describe LeanKitKanban::Card do
       LeanKitKanban::Card.find_by_external_id(@board_id, @external_id)
     end
   end
-  
-  describe :delete_multiple do  
+
+  describe :delete_multiple do
     before :each do
-      @board_id = mock("boardID")
-      @card_ids = [ mock("cardID_0"), mock("cardID_1"), mock("cardID_2") ]
+      @board_id = double("boardID")
+      @card_ids = [ double("cardID_0"), double("cardID_1"), double("cardID_2") ]
     end
 
     it "deletes the card whose ids are passed" do
@@ -40,10 +40,10 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :delete do  
+  describe :delete do
     before :each do
-      @board_id  = mock("boardID")
-      @card_id   = mock("cardID")
+      @board_id  = double("boardID")
+      @card_id   = double("cardID")
     end
 
     it "deletes the board card whose id is passed" do
@@ -53,12 +53,12 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :add do  
+  describe :add do
     before :each do
-      @board_id  = mock("boardID")
-      @lane_id   = mock("laneID")
-      @position  = mock("position")
-      @body = { "Title" => mock("title"), "TypeId" => mock("typeID")}
+      @board_id  = double("boardID")
+      @lane_id   = double("laneID")
+      @position  = double("position")
+      @body = { "Title" => double("title"), "TypeId" => double("typeID")}
     end
 
     it "adds the card into the lane and position provided" do
@@ -68,10 +68,10 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :update do  
+  describe :update do
     before :each do
-      @board_id = mock("boardID")
-      @body = { "Id" => mock("Id"), "Title" => mock("title"), "Description" => mock("description") }
+      @board_id = double("boardID")
+      @body = { "Id" => double("Id"), "Title" => double("title"), "Description" => double("description") }
     end
 
     it "updates the card using the title and description provided" do
@@ -81,17 +81,17 @@ describe LeanKitKanban::Card do
     end
   end
 
-  describe :add_multiple do  
+  describe :add_multiple do
     before :each do
       @cards = []
-      @board_id  = mock("boardID")
+      @board_id  = double("boardID")
       @wip_comment = "this is a comment"
-      
-      lane_ids = [ mock("lane_0"), mock("lane_1") ]
-      titles = [ mock("title_0"), mock("title_1") ]
-      type_ids = [ mock("type_0"), mock("type_1") ]
-      
-      lane_ids.each_with_index { |item, i| 
+
+      lane_ids = [ double("lane_0"), double("lane_1") ]
+      titles = [ double("title_0"), double("title_1") ]
+      type_ids = [ double("type_0"), double("type_1") ]
+
+      lane_ids.each_with_index { |item, i|
         @cards[i] = { "LaneId" => lane_ids[i], "Title" => titles[i], "TypeId" => type_ids[i] }
       }
     end
