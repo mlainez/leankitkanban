@@ -2,7 +2,6 @@ module LeanKitKanban
   module Card
     include HTTParty
     include LeanKitRequest
-
     DELETE_CARD   = "/Board/{boardID}/DeleteCard/{cardID}"
     DELETE_CARDS  = "/Board/{boardID}/DeleteCards"
     FIND_CARD     = "/Board/{boardID}/GetCard/{cardID}"
@@ -11,7 +10,7 @@ module LeanKitKanban
     ADD_CARDS     = "/Board/{boardID}/AddCards?wipOverrideComment={comment}"
     UPDATE_CARD   = "/Board/{boardID}/UpdateCard/"
     HISTORY_CARD  = "/Card/History/{boardID}/{cardID}"
-
+    MOVE_CARD     = "/Board/{boardID}/MoveCard/{cardID}/Lane/{laneID}/Position/{position}"
     def self.delete(board_id, card_id)
       api_call = DELETE_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s)
       post(api_call, {})
@@ -22,6 +21,11 @@ module LeanKitKanban
       post(api_call, card_ids)
     end
 
+    def self.move(board_id, card_id,lane_id,position=0)
+      api_call = MOVE_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s).gsub("{laneID}", lane_id.to_s).gsub("{position}", position.to_s)
+      get(api_call)
+    end
+    
     def self.find(board_id, card_id)
       api_call = FIND_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s)
       get(api_call)
