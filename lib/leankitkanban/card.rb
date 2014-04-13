@@ -23,9 +23,9 @@ module LeanKitKanban
 
     def self.move(board_id, card_id,lane_id,position=0)
       api_call = MOVE_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s).gsub("{laneID}", lane_id.to_s).gsub("{position}", position.to_s)
-      get(api_call)
+      post(api_call)
     end
-    
+
     def self.find(board_id, card_id)
       api_call = FIND_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s)
       get(api_call)
