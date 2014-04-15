@@ -4,7 +4,6 @@ LICENSE
 Manifest
 README.md
 Rakefile
-leankitkanban.gemspec
 lib/leankit_request.rb
 lib/leankitkanban.rb
 lib/leankitkanban/archive.rb
