@@ -110,4 +110,14 @@ describe LeanKitKanban::Card do
       LeanKitKanban::Card.history(@board_id, @card_id)
     end
   end
+
+  describe :move do
+    it "gets the history of card which id is provided" do
+      @lane_id = 12
+      @position = 0
+      api_call = "/Board/#{@board_id}/MoveCard/#{@card_id}/Lane/#{@lane_id}/Position/0"
+      LeanKitKanban::Card.should_receive(:post).with(api_call,{})
+      LeanKitKanban::Card.move(@board_id, @card_id, @lane_id, @position)
+    end
+  end
 end

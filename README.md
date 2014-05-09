@@ -37,7 +37,7 @@ Usage
     # get a specific card from a board by external id
     @card = LeanKitKanban::Card.find_by_external_id(board_id, external_id)
 
-    # add a card, specified in JSON, to the board 
+    # add a card, specified in JSON, to the board
     @response = LeanKitKanban::Card.add(board_id, lane_id, position, body)
 
     # add multiple cards, specified in JSON, to the board
@@ -52,10 +52,11 @@ Usage
     # delete multiple cards from the board
     @response = LeanKitKanban::Card.delete_multiple(board_id, card_ids)
 
+    # move a card to another lane
+    @response = LeanKitKanban::Card.move(board_id, card_id, lane_id, position)
 
     # get board backlog
     @backlog = LeanKitKanban::Backlog.fetch(board_id)
-
 
     # get board archive
     @archive = LeanKitKanban::Archive.fetch(board_id)
