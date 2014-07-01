@@ -3,7 +3,7 @@ require "spec_helper"
 describe LeanKitKanban::Backlog do
   describe :fetch do
     before :each do
-      @board_id  = mock("boardID")
+      @board_id  = double("boardID")
     end
 
     it "gets the board backlog" do

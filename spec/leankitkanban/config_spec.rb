@@ -25,11 +25,11 @@ describe LeanKitKanban::Config do
 
     context "when the config is set" do
       it "doesn't raise a no credentials error" do
-        lambda{ LeanKitKanban::Config.validate }.should_not raise_error(LeanKitKanban::Config::NoCredentials)
+        lambda{ LeanKitKanban::Config.validate }.should_not raise_error
       end
 
       it "doesn't raise a no account error" do
-        lambda{ LeanKitKanban::Config.validate }.should_not raise_error(LeanKitKanban::Config::NoAccount)
+        lambda{ LeanKitKanban::Config.validate }.should_not raise_error
       end
     end
   end
