@@ -5,12 +5,12 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'leankitkanban'
-  s.version     = '0.1.4'
-  s.date        = '2013-06-11'
+  s.version     = '0.1.5'
+  s.date        = '2014-07-01'
   s.summary     = "leankitkanban-#{s.version}"
   s.description = 'Ruby Wrapper around LeanKitKanban Api'
   s.authors     = ['Marc Lainez']
-  s.email       = 'ml@theotherguys.be'
+	s.email       = 'marc@spin42.com'
   s.homepage    = 'http://github.com/mlainez/leankitkanban'
 
   s.files         = `git ls-files`.split("\n").reject {|path| path =~ /\.gitignore$/ || path =~ /file$/ }
