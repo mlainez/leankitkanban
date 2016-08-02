@@ -6,7 +6,7 @@ module LeanKitKanban
     class << self
       attr_accessor :email, :password, :account
 
-      LKK_DOMAIN = "leankitkanban.com"
+      LKK_DOMAIN = "leankit.com"
       API_SUFFIX = "/Kanban/API"
 
       def validate
