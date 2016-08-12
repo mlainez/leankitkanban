@@ -5,8 +5,8 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'leankitkanban'
-  s.version     = '0.1.5'
-  s.date        = '2014-07-01'
+  s.version     = '0.2.0'
+  s.date        = '2016-08-12'
   s.summary     = "leankitkanban-#{s.version}"
   s.description = 'Ruby Wrapper around LeanKitKanban Api'
   s.authors     = ['Marc Lainez']
