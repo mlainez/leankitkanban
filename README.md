@@ -73,7 +73,7 @@ All specs are in the /spec directory, to run them:
 Additional information
 ----------------------
 
-* LeanKitKanban API doc: http://support.leankitkanban.com/forums/20153741-api
+* LeanKitKanban API doc: https://support.leankit.com/hc/en-us/sections/200668393-LeanKit-API-Application-Programming-Interface
 
 
 Copyright (c) 2011 Marc Lainez
