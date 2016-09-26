@@ -7,6 +7,7 @@ module LeanKitKanban
     ONE_BOARD       = "/Boards/{boardID}"
     IDENTIFIERS     = "/Board/{boardID}/GetBoardIdentifiers"
     NEWER_IF_EXISTS = "/Board/{boardID}/BoardVersion/{versionID}/GetNewerIfExists"
+    BOARD_UPDATES   = "/Board/{boardID}/BoardVersion/{versionID}/CheckForUpdates"
     HISTORY_SINCE   = "/Board/{boardID}/BoardVersion/{versionID}/GetBoardHistorySince"
 
     def self.all
@@ -25,6 +26,11 @@ module LeanKitKanban
 
     def self.get_newer_if_exists(board_id, version_id)
       api_call = NEWER_IF_EXISTS.gsub("{boardID}", board_id.to_s).gsub("{versionID}", version_id.to_s)
+      get(api_call)
+    end
+
+    def self.get_board_updates(board_id, version_id)
+      api_call = BOARD_UPDATES.gsub("{boardID}", board_id.to_s).gsub("{versionID}", version_id.to_s)
       get(api_call)
     end
 

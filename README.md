@@ -25,7 +25,12 @@ Usage
     @identifiers = LeanKitKanban::Board.get_identifiers(board_id)
 
     # get the newest version of the board if it exists
+    # note: returns the entire board structure
     @board_version = LeanKitKanban::Board.get_newer_if_exists(board_id, version_id)
+
+    # get the updates of the newest version of the board if it exists
+    # note: only returns the events that have been updated
+    @board_updates = LeanKitKanban::Board.get_board_updates(board_id, version_id)
 
     # gets the last 5 events that occured since version_id
     @last_events   = LeanKitKanban::Board.get_board_history_since(board_id, version_id)
