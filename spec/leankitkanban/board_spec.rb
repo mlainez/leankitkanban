@@ -50,6 +50,19 @@ describe LeanKitKanban::Board do
     end
   end
 
+  describe :get_board_updates do
+    before :each do
+      @board_id   = double("boardID")
+      @version_id = double("versionID")
+    end
+
+    it "gets updates for the board whose id and version is passed as parameter " do
+      api_call = "/Board/#{@board_id}/BoardVersion/#{@version_id}/CheckForUpdates"
+      LeanKitKanban::Board.should_receive(:get).with(api_call)
+      LeanKitKanban::Board.get_board_updates(@board_id, @version_id)
+    end
+  end
+
   describe :get_board_history_since do
     before :each do
       @board_id   = double("boardID")
