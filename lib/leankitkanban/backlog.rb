@@ -5,8 +5,7 @@ module LeanKitKanban
     include LeanKitEndpoint
 
     def self.fetch(board_id)
-      api_call = GET_BOARD_BACKLOG.gsub("{boardID}", board_id.to_s)
-      get(api_call)
+      get(format_url(GET_BOARD_BACKLOG, "{boardID}" => board_id))
     end
   end
 end
