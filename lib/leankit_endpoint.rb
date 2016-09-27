@@ -23,4 +23,11 @@ module LeanKitEndpoint
   UPDATE_CARD      = "/Board/{boardID}/UpdateCard/"
   HISTORY_CARD     = "/Card/History/{boardID}/{cardID}"
   MOVE_CARD        = "/Board/{boardID}/MoveCard/{cardID}/Lane/{laneID}/Position/{position}"
+
+  # Method that replaces the arguments in an endpoint with the given parameters.
+  # Arguments that are passed to the format_url method, but do not live in the
+  # endpoint, are discarded.
+  def format_url(api_endpoint, arguments)
+    api_url.gsub(/\{boardID\}|\{versionID\}|\{laneID\}|\{cardID}\|\{externalID\}|\{position\}|\{comment\}/) { |match| arguments[match] }
+  end
 end
