@@ -7,7 +7,7 @@ describe LeanKitKanban::Card do
       @card_id   = double("cardID")
     end
 
-    it "gets the board card whose id is passed" do
+    it "should get the card from the given board" do
       api_call = "/Board/#{@board_id}/GetCard/#{@card_id}"
       LeanKitKanban::Card.should_receive(:get).with(api_call)
       LeanKitKanban::Card.find(@board_id, @card_id)
@@ -20,7 +20,7 @@ describe LeanKitKanban::Card do
       @external_id = double("externalID")
     end
 
-    it "gets the board card whose id is passed" do
+    it "should get the card from the given board, by external id" do
       api_call = "/Board/#{@board_id}/GetCardByExternalId/#{@external_id}"
       LeanKitKanban::Card.should_receive(:get).with(api_call)
       LeanKitKanban::Card.find_by_external_id(@board_id, @external_id)
@@ -33,7 +33,7 @@ describe LeanKitKanban::Card do
       @card_ids = [ double("cardID_0"), double("cardID_1"), double("cardID_2") ]
     end
 
-    it "deletes the card whose ids are passed" do
+    it "should delete the cards from the given board" do
       api_call = "/Board/#{@board_id}/DeleteCards"
       LeanKitKanban::Card.should_receive(:post).with(api_call, @card_ids)
       LeanKitKanban::Card.delete_multiple(@board_id, @card_ids)
@@ -46,7 +46,7 @@ describe LeanKitKanban::Card do
       @card_id   = double("cardID")
     end
 
-    it "deletes the board card whose id is passed" do
+    it "should delete the card from the given board" do
       api_call = "/Board/#{@board_id}/DeleteCard/#{@card_id}"
       LeanKitKanban::Card.should_receive(:post).with(api_call, {})
       LeanKitKanban::Card.delete(@board_id, @card_id)
@@ -61,7 +61,7 @@ describe LeanKitKanban::Card do
       @body = { "Title" => double("title"), "TypeId" => double("typeID")}
     end
 
-    it "adds the card into the lane and position provided" do
+    it "should add the card into the lane and position provided" do
       api_call = "/Board/#{@board_id}/AddCard/Lane/#{@lane_id}/Position/#{@position}"
       LeanKitKanban::Card.should_receive(:post).with(api_call, @body)
       LeanKitKanban::Card.add(@board_id, @lane_id, @position, @body)
@@ -74,7 +74,7 @@ describe LeanKitKanban::Card do
       @body = { "Id" => double("Id"), "Title" => double("title"), "Description" => double("description") }
     end
 
-    it "updates the card using the title and description provided" do
+    it "should update the card using the title and description provided" do
       api_call = "/Board/#{@board_id}/UpdateCard/"
       LeanKitKanban::Card.should_receive(:post).with(api_call, @body)
       LeanKitKanban::Card.update(@board_id, @body)
@@ -96,7 +96,7 @@ describe LeanKitKanban::Card do
       }
     end
 
-    it "adds the cards into the lanes and positions provided" do
+    it "should add the cards into the lanes and positions provided" do
       api_call = "/Board/#{@board_id}/AddCards?wipOverrideComment=" + URI::encode(@wip_comment)
       LeanKitKanban::Card.should_receive(:post).with(api_call, @cards)
       LeanKitKanban::Card.add_multiple(@board_id, @wip_comment, @cards)
@@ -104,7 +104,7 @@ describe LeanKitKanban::Card do
   end
 
   describe :history do
-    it "gets the history of card which id is provided" do
+    it "should get the history of cards from the board that is provided" do
       api_call = "/Card/History/#{@board_id}/#{@card_id}"
       LeanKitKanban::Card.should_receive(:get).with(api_call)
       LeanKitKanban::Card.history(@board_id, @card_id)
@@ -112,7 +112,7 @@ describe LeanKitKanban::Card do
   end
 
   describe :move do
-    it "gets the history of card which id is provided" do
+    it "should move the card into the lane and position that are provided" do
       @lane_id = 12
       @position = 0
       api_call = "/Board/#{@board_id}/MoveCard/#{@card_id}/Lane/#{@lane_id}/Position/0"

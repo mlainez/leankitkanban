@@ -6,7 +6,7 @@ describe LeanKitKanban::Archive do
       @board_id  = double("boardID")
     end
 
-    it "gets the board archive" do
+    it "should get the archive of the given board" do
       api_call = "/Board/#{@board_id}/Archive"
       LeanKitKanban::Archive.should_receive(:get).with(api_call)
       LeanKitKanban::Archive.fetch(@board_id)
