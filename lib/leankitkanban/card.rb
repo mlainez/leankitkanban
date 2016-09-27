@@ -2,15 +2,8 @@ module LeanKitKanban
   module Card
     include HTTParty
     include LeanKitRequest
-    DELETE_CARD   = "/Board/{boardID}/DeleteCard/{cardID}"
-    DELETE_CARDS  = "/Board/{boardID}/DeleteCards"
-    FIND_CARD     = "/Board/{boardID}/GetCard/{cardID}"
-    FIND_CARD_EXT = "/Board/{boardID}/GetCardByExternalId/{externalID}"
-    ADD_CARD      = "/Board/{boardID}/AddCard/Lane/{laneID}/Position/{position}"
-    ADD_CARDS     = "/Board/{boardID}/AddCards?wipOverrideComment={comment}"
-    UPDATE_CARD   = "/Board/{boardID}/UpdateCard/"
-    HISTORY_CARD  = "/Card/History/{boardID}/{cardID}"
-    MOVE_CARD     = "/Board/{boardID}/MoveCard/{cardID}/Lane/{laneID}/Position/{position}"
+    include LeanKitEndpoint
+
     def self.delete(board_id, card_id)
       api_call = DELETE_CARD.gsub("{boardID}", board_id.to_s).gsub("{cardID}", card_id.to_s)
       post(api_call, {})
@@ -32,7 +25,7 @@ module LeanKitKanban
     end
 
     def self.find_by_external_id(board_id, external_id)
-      api_call = FIND_CARD_EXT.gsub("{boardID}", board_id.to_s).gsub("{externalID}", external_id.to_s)
+      api_call = FIND_CARD_EXT_ID.gsub("{boardID}", board_id.to_s).gsub("{externalID}", external_id.to_s)
       get(api_call)
     end
 

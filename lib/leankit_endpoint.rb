@@ -1,9 +1,9 @@
 module LeanKitEndpoint
   # Archive endpoints
-  BOARD_ARCHIVE = "/Board/{boardID}/Archive"
+  GET_BOARD_ARCHIVE = "/Board/{boardID}/Archive"
 
   # Backlog endpoints
-  BOARD_BACKLOG = "/Board/{boardID}/Backlog"
+  GET_BOARD_BACKLOG = "/Board/{boardID}/Backlog"
 
   # Board endpoints
   GET_BOARDS                = "/Boards"
@@ -23,5 +23,4 @@ module LeanKitEndpoint
   UPDATE_CARD      = "/Board/{boardID}/UpdateCard/"
   HISTORY_CARD     = "/Card/History/{boardID}/{cardID}"
   MOVE_CARD        = "/Board/{boardID}/MoveCard/{cardID}/Lane/{laneID}/Position/{position}"
-
 end
