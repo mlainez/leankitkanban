@@ -1,9 +1,9 @@
 module LeanKitEndpoint
   # Archive endpoints
-  ARCHIVE = "/Board/{boardID}/Archive"
+  BOARD_ARCHIVE = "/Board/{boardID}/Archive"
 
   # Backlog endpoints
-  BACKLOG = "/Board/{boardID}/Backlog"
+  BOARD_BACKLOG = "/Board/{boardID}/Backlog"
 
   # Board endpoints
   GET_BOARDS                = "/Boards"
