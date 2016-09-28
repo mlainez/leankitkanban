@@ -27,10 +27,25 @@ module LeanKitKanban
 
     module ClassMethods
       # Method that replaces the arguments in an endpoint with the given parameters.
-      # Arguments that are passed to the format_url method, but do not live in the
-      # endpoint, are discarded.
-      def format_url(api_endpoint, arguments)
-        api_endpoint.gsub(/\{boardID\}|\{versionID\}|\{laneID\}|\{cardID\}|\{externalID\}|\{position\}|\{comment\}/) { |match| arguments[match] }
+      # Arguments that are passed to the build_api_endpoint method, but do not
+      # live in the endpoint, are discarded.
+      def build_api_endpoint(api_endpoint, arguments = {})
+        # Endpoint argument hash that links symbols to regex
+        endpoint_args = { :board_id    => /\{boardID\}/,
+                          :version_id  => /\{versionID\}/,
+                          :lane_id     => /\{laneID\}/,
+                          :card_id     => /\{cardID\}/,
+                          :external_id => /\{externalID\}/,
+                          :position    => /\{position\}/,
+                          :comment     => /\{comment\}/
+                        }
+        # Loop over the given argument symbols, retrieve the corresponding regex
+        # and replace the argument with the corresponding value.
+        arguments.each do |k, v|
+          api_endpoint.gsub!(endpoint_args.fetch(k), v.to_s)
+        end
+
+        return api_endpoint
       end
     end
 
