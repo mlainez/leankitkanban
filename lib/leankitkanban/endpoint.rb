@@ -47,6 +47,9 @@ module LeanKitKanban
 
         return api_endpoint_template
       end
+
+      # Make the method available for Rspec 
+      module_function :build_api_endpoint
     end
 
     def self.included(receiver)
