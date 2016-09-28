@@ -5,7 +5,7 @@ module LeanKitKanban
     include LeanKitEndpoint
 
     def self.fetch(board_id)
-      get(format_url(GET_BOARD_BACKLOG, "{boardID}" => board_id))
+      get(build_api_endpoint(GET_BOARD_BACKLOG, board_id: board_id))
     end
   end
 end
