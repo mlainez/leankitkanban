@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe LeanKitKanban::LeanKitEndpoint do
+describe LeanKitKanban::Endpoint do
   before :all do
     ConfigHelper.set_test_config
   end
@@ -14,7 +14,7 @@ describe LeanKitKanban::LeanKitEndpoint do
 
     it "should build an endpoint based on the given input" do
       expected = "/Board/#{@board_id}/BoardVersion/#{@version_id}/GetNewerIfExists"
-      actual = LeanKitKanban::LeanKitEndpoint::ClassMethods.build_api_endpoint(@endpoint_url, board_id: @board_id, version_id: @version_id)
+      actual = LeanKitKanban::Endpoint::ClassMethods.build_api_endpoint(@endpoint_url, board: @board_id, version: @version_id)
 
       expect(actual).to eq(expected)
     end

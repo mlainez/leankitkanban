@@ -1,5 +1,5 @@
 module LeanKitKanban
-  module LeanKitEndpoint
+  module Endpoint
     # Archive endpoints
     GET_BOARD_ARCHIVE = "/Board/{boardID}/Archive"
 
@@ -31,13 +31,13 @@ module LeanKitKanban
       # live in the endpoint, are discarded.
       def build_api_endpoint(api_endpoint_template, arguments = {})
         # Endpoint parameters hash that links symbols to regex
-        endpoint_parameters = { :board_id    => /\{boardID\}/,
-                                :version_id  => /\{versionID\}/,
-                                :lane_id     => /\{laneID\}/,
-                                :card_id     => /\{cardID\}/,
-                                :external_id => /\{externalID\}/,
-                                :position    => /\{position\}/,
-                                :comment     => /\{comment\}/
+        endpoint_parameters = { :board    => /\{boardID\}/,
+                                :version  => /\{versionID\}/,
+                                :lane     => /\{laneID\}/,
+                                :card     => /\{cardID\}/,
+                                :external => /\{externalID\}/,
+                                :position => /\{position\}/,
+                                :comment  => /\{comment\}/
                               }
         # Loop over the given argument symbols, retrieve the corresponding regex
         # and replace the argument with the corresponding value.
@@ -48,7 +48,7 @@ module LeanKitKanban
         return api_endpoint_template
       end
 
-      # Make the method available for Rspec 
+      # Make the method available for Rspec
       module_function :build_api_endpoint
     end
 
