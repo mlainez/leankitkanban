@@ -31,13 +31,13 @@ module LeanKitKanban
       # live in the endpoint, are discarded.
       def build_api_endpoint(api_endpoint_template, arguments = {})
         # Endpoint parameters hash that links symbols to regex
-        endpoint_parameters = { :board    => /\{boardID\}/,
-                                :version  => /\{versionID\}/,
-                                :lane     => /\{laneID\}/,
-                                :card     => /\{cardID\}/,
-                                :external => /\{externalID\}/,
-                                :position => /\{position\}/,
-                                :comment  => /\{comment\}/
+        endpoint_parameters = { board:    /\{boardID\}/,
+                                version:  /\{versionID\}/,
+                                lane:     /\{laneID\}/,
+                                card:     /\{cardID\}/,
+                                external: /\{externalID\}/,
+                                position: /\{position\}/,
+                                comment:  /\{comment\}/
                               }
         # Loop over the given argument symbols, retrieve the corresponding regex
         # and replace the argument with the corresponding value.
