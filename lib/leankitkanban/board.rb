@@ -2,35 +2,36 @@ module LeanKitKanban
   module Board
     include HTTParty
     include LeanKitRequest
-
-    ALL_BOARDS      = "/Boards"
-    ONE_BOARD       = "/Boards/{boardID}"
-    IDENTIFIERS     = "/Board/{boardID}/GetBoardIdentifiers"
-    NEWER_IF_EXISTS = "/Board/{boardID}/BoardVersion/{versionID}/GetNewerIfExists"
-    HISTORY_SINCE   = "/Board/{boardID}/BoardVersion/{versionID}/GetBoardHistorySince"
+    include Endpoint
 
     def self.all
-      get(ALL_BOARDS)
+      get(GET_BOARDS)
     end
 
     def self.find(board_id)
-      api_call = ONE_BOARD.gsub("{boardID}", board_id.to_s)
-      get(api_call)
+      get(build_api_endpoint(GET_BOARD, board: board_id))
     end
 
     def self.get_identifiers(board_id)
-      api_call = IDENTIFIERS.gsub("{boardID}", board_id.to_s)
-      get(api_call)
+      get(build_api_endpoint(GET_BOARD_IDENTIFIERS, board: board_id))
     end
 
     def self.get_newer_if_exists(board_id, version_id)
-      api_call = NEWER_IF_EXISTS.gsub("{boardID}", board_id.to_s).gsub("{versionID}", version_id.to_s)
-      get(api_call)
+      get(build_api_endpoint(GET_NEWER_BOARD_IF_EXISTS,
+                             board: board_id,
+                             version: version_id))
+    end
+
+    def self.get_board_updates(board_id, version_id)
+      get(build_api_endpoint(CHECK_FOR_BOARD_UPDATES,
+                             board: board_id,
+                             version: version_id))
     end
 
     def self.get_board_history_since(board_id, version_id)
-      api_call = HISTORY_SINCE.gsub("{boardID}", board_id.to_s).gsub("{versionID}", version_id.to_s)
-      get(api_call)
+      get(build_api_endpoint(GET_BOARD_HISTORY_SINCE,
+                             board: board_id,
+                             version: version_id))
     end
   end
 end
