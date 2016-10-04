@@ -30,6 +30,7 @@ module LeanKitKanban
       # Arguments that are passed to the build_api_endpoint method, but do not
       # live in the endpoint, are discarded.
       def build_api_endpoint(api_endpoint_template, arguments = {})
+        api_endpoint_result = api_endpoint_template.dup
         # Endpoint parameters hash that links symbols to regex
         endpoint_parameters = { board:    /\{boardID\}/,
                                 version:  /\{versionID\}/,
@@ -42,10 +43,16 @@ module LeanKitKanban
         # Loop over the given argument symbols, retrieve the corresponding regex
         # and replace the argument with the corresponding value.
         arguments.each do |k, v|
-          api_endpoint_template.gsub!(endpoint_parameters.fetch(k), v.to_s)
+          puts "Key: " + k.to_s
+          puts "Value: " + v.to_s
+          puts "Before: " + api_endpoint_result.to_s
+          api_endpoint_result.gsub!(endpoint_parameters.fetch(k), v.to_s)
+          puts "After: " + api_endpoint_result
         end
 
-        return api_endpoint_template
+        puts "Final: " + api_endpoint_result
+
+        return api_endpoint_result
       end
 
       # Make the method available for Rspec
